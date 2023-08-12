@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Card from '../UI/Card/Card';
 import classes from './Login.module.css';
 import Button from '../UI/Button/Button';
+import RolesDrop from '../Roles/RolesDrop';
 
 const Login = (props) => {
   const [enteredEmail, setEnteredEmail] = useState('');
@@ -10,13 +11,17 @@ const Login = (props) => {
   const [enteredPassword, setEnteredPassword] = useState('');
   const [passwordIsValid, setPasswordIsValid] = useState();
   const [formIsValid, setFormIsValid] = useState(false);
+useEffect(()=>{
+  setFormIsValid(
+    enteredEmail.includes('@') && enteredPassword.trim().length > 6
+  );
+  console.log('CLEAN-UP');
+}, [enteredEmail,  enteredPassword]);
 
   const emailChangeHandler = (event) => {
     setEnteredEmail(event.target.value);
 
-    setFormIsValid(
-      event.target.value.includes('@') && enteredPassword.trim().length > 6
-    );
+   
   };
 
   const passwordChangeHandler = (event) => {
@@ -43,11 +48,13 @@ const Login = (props) => {
   return (
     <Card className={classes.login}>
       <form onSubmit={submitHandler}>
+      <RolesDrop/>
         <div
           className={`${classes.control} ${
             emailIsValid === false ? classes.invalid : ''
           }`}
         >
+          
           <label htmlFor="email">E-Mail</label>
           <input
             type="email"
