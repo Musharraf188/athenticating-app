@@ -105,30 +105,33 @@ useEffect(()=>{
 
   const emailChangeHandler = (event) => {
     setEnteredEmail(event.target.value);
-
-   
   };
 
   const passwordChangeHandler = (event) => {
     setEnteredPassword(event.target.value);
+
 
     setFormIsValid(
       event.target.value.trim().length > 6 && enteredEmail.includes('@')
     );
   };
 
+
   const validateEmailHandler = () => {
     setEmailIsValid(enteredEmail.includes('@'));
   };
+
 
   const validatePasswordHandler = () => {
     setPasswordIsValid(enteredPassword.trim().length > 6);
   };
 
+
   const submitHandler = (event) => {
     event.preventDefault();
     props.onLogin(enteredEmail, enteredPassword);
   };
+  
 return (
     <form onSubmit={submitHandler}>  <div className={styles.container}>
       <div className={styles.design}>
@@ -153,7 +156,7 @@ return (
           <i className={`ri-lock-fill ${styles.icon}`}></i>
           <input onBlur={validatePasswordHandler} onChange={passwordChangeHandler} type="password" placeholder="Password" />
         </div>
-        <button type='submit' className={styles['login-btn']} disabled={!formIsValid}>LOGIN</button>
+        <button type='submit' className={styles["login-btn"]} disabled={!formIsValid}>LOGIN</button>
             
       </div>
     </div>
