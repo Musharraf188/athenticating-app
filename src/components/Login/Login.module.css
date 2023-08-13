@@ -71,6 +71,10 @@ body {
   align-items: stretch;
   flex-direction: column;
 }
+.control.invalid input {
+    border-color: red;
+    background: #fbdada;
+  }
 
 .container {
     width: 50vw;

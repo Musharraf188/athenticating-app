@@ -105,30 +105,33 @@ useEffect(()=>{
 
   const emailChangeHandler = (event) => {
     setEnteredEmail(event.target.value);
-
-   
   };
 
   const passwordChangeHandler = (event) => {
     setEnteredPassword(event.target.value);
+
 
     setFormIsValid(
       event.target.value.trim().length > 6 && enteredEmail.includes('@')
     );
   };
 
+
   const validateEmailHandler = () => {
     setEmailIsValid(enteredEmail.includes('@'));
   };
+
 
   const validatePasswordHandler = () => {
     setPasswordIsValid(enteredPassword.trim().length > 6);
   };
 
+
   const submitHandler = (event) => {
     event.preventDefault();
     props.onLogin(enteredEmail, enteredPassword);
   };
+  
 return (
     <form onSubmit={submitHandler}>  <div className={styles.container}>
       <div className={styles.design}>
@@ -143,7 +146,14 @@ return (
         <h3 className={styles.titleee}>User Login</h3>
         <div className={styles['text-input']}>
           <i className={`ri-user-fill ${styles.icon}`}></i>
-          <input  onBlur={validateEmailHandler} onChange={emailChangeHandler} type="text" placeholder="Username" />
+          <input 
+             type="email"          
+             id="email"
+             value={enteredEmail}
+             onChange={emailChangeHandler}
+             onBlur={validateEmailHandler}
+             placeholder='Username'
+             />
         </div>
         <div
            className={`${styles.control} ${styles['text-input']} ${
@@ -151,9 +161,16 @@ return (
            }`}       >
 
           <i className={`ri-lock-fill ${styles.icon}`}></i>
-          <input onBlur={validatePasswordHandler} onChange={passwordChangeHandler} type="password" placeholder="Password" />
+          <input 
+           type="password"
+           id="password"
+           value={enteredPassword}
+           onChange={passwordChangeHandler}
+            onBlur={validatePasswordHandler}
+            placeholder='Password' />
+          
         </div>
-        <button type='submit' className={styles['login-btn']} disabled={!formIsValid}>LOGIN</button>
+        <button type='submit' className={styles["login-btn"]} disabled={!formIsValid}>LOGIN</button>
             
       </div>
     </div>
